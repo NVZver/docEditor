@@ -12,7 +12,17 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+def get_path_array_to(dir_name):
+    listDir = os.listdir()
+    templates = []
+    for dir in listDir:
+        if (dir == dir_name):
+            templates.append(os.path.abspath(dir).replace('\\', '/'))
+        else:
+            if os.path.isdir(dir):
+                if dir != '.git':
+                    templates.append(os.path.join(os.path.abspath(dir), dir_name).replace('\\', '/'))
+    return templates
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -55,7 +65,7 @@ ROOT_URLCONF = 'docEditor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': get_path_array_to('templates'),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +86,12 @@ WSGI_APPLICATION = 'docEditor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'NAME': 'editor',
+        'USER': 'editor_admin',
+        'PASSWORD': 'qweasd123',
     }
 }
 
