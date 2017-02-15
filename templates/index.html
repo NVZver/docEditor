@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="editorApp">
 <head>
     <meta charset="UTF-8">
     <title>Doc editor</title>
@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="{% static 'static/js/index.js' %}"></script>
 </head>
-<body>
+<body ng-controller="editorCtl">
+{% verbatim %}
     <h1>Hi, Jack!</h1>
+{% endverbatim %}
 </body>
 </html>
