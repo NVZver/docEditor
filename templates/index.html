@@ -6,6 +6,7 @@
     <title>Doc editor</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/style.css' %}">
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
@@ -23,34 +24,47 @@
 
     <div class="row">
         <div class="col s12">
-            <div class="card">
+            <div class="card editor">
                 <div class="card-content">
                     <div class="row">
-                        <div class="col s8">
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
+                        <div class="content">
+                            <div class="col s8 content-form">
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s12">
                                             <textarea id="textarea1" class="materialize-textarea"
-                                            ng-model="selectedDoc.text" placeholder="Enter your text"></textarea>
-                                            <label for="textarea1">Doc: {{ selectedDoc.id ? selectedDoc.id : 'new' }}</label>
+                                                      ng-model="selectedDoc.text"
+                                                      placeholder="Enter your text"></textarea>
+                                                <label for="textarea1">Doc: {{ selectedDoc.id ? selectedDoc.id : 'new'
+                                                    }}</label>
+                                            </div>
+                                            <button class="btn waves-effect waves-light"
+                                                    type="button" name="action" ng-click="selectedDocSave()">Save
+                                            </button>
+                                            <a class="waves-effect waves-teal btn-flat"
+                                               ng-click="selectedDocSaveCancel()">Cancel</a>
+                                            <button class="btn waves-effect waves-light red right"
+                                                    ng-class="selectedDoc.id ? '': 'disabled'"
+                                                    type="button" name="action" ng-click="selectedDocRemove()">Remove
+                                            </button>
                                         </div>
-                                        <button class="btn waves-effect waves-light"
-                                                type="button" name="action" ng-click="selectedDocSave()">Save</button>
-                                        <a class="waves-effect waves-teal btn-flat"
-                                        ng-click="selectedDocSaveCancel()">Cancel</a>
-                                        <button class="btn waves-effect waves-light red right" ng-class="selectedDoc.id ? '': 'disabled'"
-                                                type="button" name="action" ng-click="selectedDocRemove()">Remove</button>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col s4">
-                            <div class="collection">
-                                <a href="#!" class="collection-item"
-                                   ng-repeat="doc in docs" ng-click="docSelect(doc)">{{ doc.text }}</a>
-                                <a href="#!" class="collection-item"
-                                   ng-click="selectedDocAdd()">Add new</a>
+                            <div class="col s4">
+                                <div class="row">
+                                    <div class="collection docs">
+                                        <a href="#!" class="collection-item"
+                                           ng-repeat="doc in docs" ng-click="docSelect(doc)"
+                                           ng-class="doc.active ? 'active' : ''">{{ doc.text }}</a>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <button class="btn waves-effect waves-light teal"
+                                            type="button" name="action" ng-click="selectedDocAdd()">Add New
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

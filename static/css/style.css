@@ -1,0 +1,16 @@
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.content-form{
+    flex-basis: 60%;
+}
+.content-list{
+    flex-basis: 40%;
+}
+.collection.docs {
+    max-height: 400px;
+    overflow: auto;
+}
