@@ -28,6 +28,8 @@
 
         function docSelect(doc) {
             $scope.selectedDoc = doc;
+            $scope.docs.map(function(doc){doc.active = false;});
+            doc.active = true;
         }
 
         function selectedDocSave() {
@@ -65,6 +67,7 @@
 
         function selectedDocAdd() {
             $scope.selectedDoc = {}
+            $scope.docs.map(function(doc){doc.active = false;});
         }
 
     });
