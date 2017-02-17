@@ -47,7 +47,8 @@
         }
 
         function selectedDocSaveCancel() {
-            $scope.selectedDoc = {}
+            $scope.selectedDoc = {};
+            $scope.docs.map(function(doc){doc.active = false;});
         }
 
         function selectedDocRemove() {
@@ -66,7 +67,7 @@
         }
 
         function selectedDocAdd() {
-            $scope.selectedDoc = {}
+            $scope.selectedDoc = {};
             $scope.docs.map(function(doc){doc.active = false;});
         }
 
